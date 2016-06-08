@@ -1,52 +1,43 @@
 #include "itkImage.h"
-#include "itkGrayscaleDilateImageFilter.h"
 #include "itkImageFileReader.h"
-#include "itkBinaryCrossStructuringElement.h"
-#include "itkSubtractImageFilter.h"
 #include "itkImageFileWriter.h"
+#include "itkRGBToLuminanceImageFilter.h"
 
-int main(int argc, char *argv[])
-{
-    std::cout << "YO" << std::endl;
-    /*if(argc < 2)
-    {
-    std::cerr << "Usage: " << std::endl;
-    std::cerr << argv[0] << " InputImageFile [radius]" << std::endl;
-    return EXIT_FAILURE;
-    }
+#include "ColorExtractor.hpp"
 
-  unsigned int radius = 2;
-  if (argc > 2)
-    {
-    radius = atoi(argv[2]);
-    }
+#include <iostream>
 
-  std::string inputFilename = argv[1];
+using namespace std;
+using namespace itk;
 
-  typedef itk::Image<unsigned char, 2>    ImageType;
-  typedef itk::ImageFileReader<ImageType> ReaderType;
-  //ReaderType::Pointer reader = ReaderType::New();
-  //reader->SetFileName(inputFilename);
+//const int DIMENSIONS = 2;
 
-  typedef itk::BinaryCrossStructuringElement<
-    ImageType::PixelType,2> StructuringElementType;
-  StructuringElementType structuringElement;
-  structuringElement.SetRadius(radius);
-  structuringElement.CreateStructuringElement();
+typedef Image<unsigned char , DIMENSIONS> GrayscaleImageType;
+typedef RGBPixel<unsigned char> RGBPixelType;
+typedef Image<RGBPixelType , DIMENSIONS> RGBImageType;
+typedef ImageFileReader<RGBImageType> RGBReaderType;
+typedef RGBToLuminanceImageFilter<RGBImageType, GrayscaleImageType> GrayscaleFilterType;
 
-  typedef itk::GrayscaleDilateImageFilter <ImageType, ImageType, StructuringElementType>
-    GrayscaleDilateImageFilterType;
 
-  GrayscaleDilateImageFilterType::Pointer dilateFilter
-    = GrayscaleDilateImageFilterType::New();
-  dilateFilter->SetInput(reader->GetOutput());
-  dilateFilter->SetKernel(structuringElement);
 
-  typedef itk::ImageFileWriter<ImageType> WriterType;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( "output.png" );
-  writer->SetInput(dilateFilter->GetOutput());
-  writer->Update();*/
 
-  return EXIT_SUCCESS;
+
+
+int main(int argc, char *argv[]){
+
+/* ------------------------------------ ABRIR IMAGEM ---------------------------------------- */
+    
+    RGBReaderType::Pointer rgbReader = RGBReaderType::New();
+    rgbReader -> SetFileName("../../../testes_basicos/bart009.bmp");
+    RGBImageType::Pointer rgbImage = rgbReader -> GetOutput();
+    rgbImage -> Update();
+    
+    int* vetColors = new int[8];
+    ColorExtractor* colorExtractor = new ColorExtractor(rgbImage);
+    colorExtractor -> GetValues(vetColors);
+    
+    
+/* ------------------------------------------------------------------------------------------ */
+
+    return EXIT_SUCCESS;
 }
