@@ -49,14 +49,14 @@ void ColorExtractor::GetData(){
         }
         ++imageIterator;
     }
-    cout << "BART camiseta : " << bartShirt << endl;
-    cout << "BART tenis e shots : " << bartShortsAndShoes << endl;
-    cout << "HOMER barba : " << homerBeard << endl;
-    cout << "HOMER calca : " << homerPants << endl;
-    cout << "LISA | MAGGIE | MARGE vestido - chupeta - acessotios : " << lisaDressAndMaggiePacifierAndMargeItems << endl;
-    cout << "MAGGIE pijama : " << maggiePijamas << endl;
-    cout << "MARGE cabelo : " << margeHair << endl;
-    cout << "MARGE vestido : " << margeDress << endl;
+    //cout << "BART camiseta : " << bartShirt << endl;
+    //cout << "BART tenis e shots : " << bartShortsAndShoes << endl;
+    //cout << "HOMER barba : " << homerBeard << endl;
+    //cout << "HOMER calca : " << homerPants << endl;
+    //cout << "LISA | MAGGIE | MARGE vestido - chupeta - acessotios : " << lisaDressAndMaggiePacifierAndMargeItems << endl;
+    //cout << "MAGGIE pijama : " << maggiePijamas << endl;
+    //cout << "MARGE cabelo : " << margeHair << endl;
+    //cout << "MARGE vestido : " << margeDress << endl;
 }
 
 void ColorExtractor::GetValues(int* values){
