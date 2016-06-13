@@ -1,3 +1,7 @@
 *.bmp
 *.zip
 /ExtratorDeCaracteristicas/build/*
+classificadores/bin/
+classificadores/lib/
+classificadores/pip-selfcheck.json
+classificadores/pyvenv.cfg
