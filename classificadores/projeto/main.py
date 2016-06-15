@@ -4,6 +4,7 @@ from funcoes_de_classificacao import *
 from lda_funcoes import *
 from svm_funcoes import *
 from knn_funcoes import *
+from tree_funcoes import *
 
 """ CONSTANTES """
 bart = 1
@@ -55,12 +56,18 @@ labels_prob = converte_probabilidades_em_labels(knn_prob)
 exibe_resultados(labels_prob , y_teste)
 
 
-'''
 """ TREE """
-print("========== TREE ==========")
+print("============ TREE ============")
 tree_predicoes = TREE_resultados(X_treino , y_treino , X_teste , y_teste)
 exibe_resultados(tree_predicoes , y_teste)
 
+print("========== TREE PROB ==========")
+tree_prob = TREE_probabilidades(X_treino , y_treino , X_teste , y_teste)
+labels_prob = converte_probabilidades_em_labels(tree_prob)
+exibe_resultados(labels_prob , y_teste)
+
+
+'''
 """ MLP """
 print("========== MLP ==========")
 mlp_predicoes = MLP_resultados(X_treino , y_treino , X_teste , y_teste)

@@ -127,7 +127,7 @@ def MLP_resultados(X_treino , y_treino , X_teste ,  y_teste):
 
 
 
-""" MULTINOMIAL BAYES """
+""" MULTINOMIAL BAYES ""
 def TREE_builder(X , y , classe_alvo):
 	''' gera um classificador do tipo MULTINOMIAL BAYES ja treinado '''
 	labels_corrigidas = reorganiza_labels(classe_alvo , y)
@@ -162,3 +162,4 @@ def TREE_resultados(X_treino , y_treino , X_teste ,  y_teste):
 
 	predicoes = combina_predicoes(resultados)
 	return predicoes
+"""
