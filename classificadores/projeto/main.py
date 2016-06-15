@@ -2,6 +2,7 @@ from sys import argv
 from functions import *
 from funcoes_de_classificacao import *
 from lda_funcoes import *
+from svm_functions import *
 
 """ CONSTANTES """
 bart = 1
@@ -21,7 +22,7 @@ X_teste , y_teste = prepara_dados('validacao.txt')
 
 
 """ LDA """
-print("========== LDA  ==========")
+print("============ LDA  ============")
 lda_predicoes =  LDA_resultados(X_treino , y_treino , X_teste ,  y_teste)
 exibe_resultados(lda_predicoes , y_teste)
 
@@ -30,13 +31,18 @@ lda_probabilidades =  LDA_probabilidades(X_treino , y_treino , X_teste ,  y_test
 labels_prob = converte_probabilidades_em_labels(lda_probabilidades)
 exibe_resultados(labels_prob , y_teste)
 
-'''
+
 """ SVM """
-print("========== SVM ==========")
+print("============ SVM ============")
 svm_predicoes = SVM_resultados(X_treino , y_treino , X_teste , y_teste)
 exibe_resultados(svm_predicoes , y_teste)
 
+print("========== SVM PROB ==========")
+svm_prob = SVM_probabilidades(X_treino , y_treino , X_teste , y_teste)
+labels_prob = converte_probabilidades_em_labels(svm_prob)
+exibe_resultados(labels_prob , y_teste)
 
+'''
 """ KNN """
 print("========== KNN ==========")
 knn_predicoes = KNN_resultados(X_treino , y_treino , X_teste , y_teste , 5)

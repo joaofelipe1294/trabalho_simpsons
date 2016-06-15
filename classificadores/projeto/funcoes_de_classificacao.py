@@ -1,10 +1,7 @@
 from functions import *
 from sklearn import preprocessing
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn import svm
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
-from sklearn.naive_bayes import MultinomialNB
 from sklearn import tree
 
 
@@ -92,7 +89,7 @@ def converte_probabilidades_em_labels(probabilidades):
 
 
 
-""" SVM """
+""" SVM ""
 def SVM_builder(X , y , classe_alvo):
 	''' gera um classificador do tipo SVM ja treinado '''
 	labels_corrigidas = reorganiza_labels(classe_alvo , y)
@@ -127,7 +124,7 @@ def SVM_resultados(X_treino , y_treino , X_teste ,  y_teste):
 
 	predicoes = combina_predicoes(resultados)
 	return predicoes	
-
+"""
 
 
 """ KNN """
