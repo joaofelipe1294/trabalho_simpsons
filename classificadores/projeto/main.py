@@ -2,7 +2,8 @@ from sys import argv
 from functions import *
 from funcoes_de_classificacao import *
 from lda_funcoes import *
-from svm_functions import *
+from svm_funcoes import *
+from knn_funcoes import *
 
 """ CONSTANTES """
 bart = 1
@@ -42,13 +43,19 @@ svm_prob = SVM_probabilidades(X_treino , y_treino , X_teste , y_teste)
 labels_prob = converte_probabilidades_em_labels(svm_prob)
 exibe_resultados(labels_prob , y_teste)
 
-'''
+
 """ KNN """
-print("========== KNN ==========")
+print("============ KNN ============")
 knn_predicoes = KNN_resultados(X_treino , y_treino , X_teste , y_teste , 5)
 exibe_resultados(knn_predicoes , y_teste)
 
+print("========== KNN PROB ==========")
+knn_prob = KNN_probabilidades(X_treino , y_treino , X_teste , y_teste , 5)
+labels_prob = converte_probabilidades_em_labels(knn_prob)
+exibe_resultados(labels_prob , y_teste)
 
+
+'''
 """ TREE """
 print("========== TREE ==========")
 tree_predicoes = TREE_resultados(X_treino , y_treino , X_teste , y_teste)

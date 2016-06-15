@@ -89,81 +89,6 @@ def converte_probabilidades_em_labels(probabilidades):
 
 
 
-""" SVM ""
-def SVM_builder(X , y , classe_alvo):
-	''' gera um classificador do tipo SVM ja treinado '''
-	labels_corrigidas = reorganiza_labels(classe_alvo , y)
-	svm_classifier = svm.SVC()
-	svm_classifier.fit(X , labels_corrigidas)
-	return svm_classifier
-
-
-
-def SVM_resultados(X_treino , y_treino , X_teste ,  y_teste):
-	''' gera um vetor com os resultados de todos os classificadores SVM combinados '''
-	svm_bart = SVM_builder(X_treino , y_treino , bart)
-	svm_homer = SVM_builder(X_treino , y_treino , homer)
-	svm_lisa = SVM_builder(X_treino , y_treino , lisa)
-	svm_maggie = SVM_builder(X_treino , y_treino , maggie)
-	svm_marge = SVM_builder(X_treino , y_treino , marge)
-
-	teste_bart = reorganiza_labels(bart , y_teste)
-	teste_homer = reorganiza_labels(homer , y_teste)
-	teste_lisa = reorganiza_labels(lisa , y_teste)
-	teste_maggie = reorganiza_labels(maggie , y_teste)
-	teste_marge = reorganiza_labels(marge , y_teste)
-
-	resultados_bart = svm_bart.predict(X_teste)
-	resultados_homer = svm_homer.predict(X_teste)
-	resultados_lisa = svm_lisa.predict(X_teste)
-	resultados_maggie = svm_maggie.predict(X_teste)
-	resultados_marge = svm_marge.predict(X_teste)
-
-	resultados = [resultados_bart , resultados_homer , resultados_lisa , resultados_maggie , resultados_marge]
-	testes = [teste_bart , teste_homer , teste_lisa , teste_maggie , teste_marge]
-
-	predicoes = combina_predicoes(resultados)
-	return predicoes	
-"""
-
-
-""" KNN """
-def KNN_builder(X , y , classe_alvo , k):
-	''' gera um classificador do tipo KNN ja treinado '''
-	labels_corrigidas = reorganiza_labels(classe_alvo , y)
-	knn_classifier = KNeighborsClassifier(n_neighbors=k)
-	knn_classifier.fit(X , labels_corrigidas)
-	return knn_classifier
-
-
-
-def KNN_resultados(X_treino , y_treino , X_teste ,  y_teste , k):
-	''' gera um vetor com os resultados de todos os classificadores KNN combinados '''
-	knn_bart = KNN_builder(X_treino , y_treino , bart , k)
-	knn_homer = KNN_builder(X_treino , y_treino , homer , k)
-	knn_lisa = KNN_builder(X_treino , y_treino , lisa , k)
-	knn_maggie = KNN_builder(X_treino , y_treino , maggie , k)
-	knn_marge = KNN_builder(X_treino , y_treino , marge , k)
-
-	teste_bart = reorganiza_labels(bart , y_teste)
-	teste_homer = reorganiza_labels(homer , y_teste)
-	teste_lisa = reorganiza_labels(lisa , y_teste)
-	teste_maggie = reorganiza_labels(maggie , y_teste)
-	teste_marge = reorganiza_labels(marge , y_teste)
-
-	resultados_bart = knn_bart.predict(X_teste)
-	resultados_homer = knn_homer.predict(X_teste)
-	resultados_lisa = knn_lisa.predict(X_teste)
-	resultados_maggie = knn_maggie.predict(X_teste)
-	resultados_marge = knn_marge.predict(X_teste)
-
-	resultados = [resultados_bart , resultados_homer , resultados_lisa , resultados_maggie , resultados_marge]
-	testes = [teste_bart , teste_homer , teste_lisa , teste_maggie , teste_marge]
-
-	predicoes = combina_predicoes(resultados)
-	return predicoes
-
-
 """ MLP """
 def MLP_builder(X , y , classe_alvo):
 	''' gera um classificador do tipo MLP ja treinado '''
@@ -237,4 +162,3 @@ def TREE_resultados(X_treino , y_treino , X_teste ,  y_teste):
 
 	predicoes = combina_predicoes(resultados)
 	return predicoes
-
