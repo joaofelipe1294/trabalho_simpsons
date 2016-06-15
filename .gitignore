@@ -5,3 +5,6 @@ classificadores/bin/
 classificadores/lib/
 classificadores/pip-selfcheck.json
 classificadores/pyvenv.cfg
+classificadores/projeto/__pycache__/
+classificadores/projeto/validacao.txt
+classificadores/projeto/treino.txt
