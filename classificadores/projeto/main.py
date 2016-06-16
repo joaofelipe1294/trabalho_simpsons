@@ -17,36 +17,43 @@ marge = 5
 
 
 """ prepara dados """
+argc = len(argv)
 dir_treino = argv[1]
 dir_validacao = argv[2]
 X_treino , y_treino = prepara_dados('treino.txt')
 X_teste , y_teste = prepara_dados('validacao.txt')
+""""""""""""""""""""
 
-nome_classificador = argv[3]
-labels = None
-classificador = None
-if nome_classificador == 'knn' or nome_classificador == 'KNN':
-	classificador = KNN_probabilidades(X_treino , y_treino , X_teste , y_teste , 5)
+if argc == 4:                         
+	''' executa apenas um classificador '''
+	nome_classificador = argv[3]
+	labels = None
+	classificador = None
+	if nome_classificador == 'knn' or nome_classificador == 'KNN':
+		classificador = KNN_probabilidades(X_treino , y_treino , X_teste , y_teste , 5)
 
-elif nome_classificador == 'lda' or nome_classificador == 'LDA':
-	classificador =  LDA_probabilidades(X_treino , y_treino , X_teste ,  y_teste)
+	elif nome_classificador == 'lda' or nome_classificador == 'LDA':
+		classificador =  LDA_probabilidades(X_treino , y_treino , X_teste ,  y_teste)
 
-elif nome_classificador == 'svm' or nome_classificador == 'SVM':
-	classificador = SVM_probabilidades(X_treino , y_treino , X_teste , y_teste)
+	elif nome_classificador == 'svm' or nome_classificador == 'SVM':
+		classificador = SVM_probabilidades(X_treino , y_treino , X_teste , y_teste)
 
-elif nome_classificador == 'tree' or nome_classificador == 'TREE':
-	classificador = TREE_probabilidades(X_treino , y_treino , X_teste , y_teste)
+	elif nome_classificador == 'tree' or nome_classificador == 'TREE':
+		classificador = TREE_probabilidades(X_treino , y_treino , X_teste , y_teste)
 
-elif nome_classificador == 'mlp' or nome_classificador == 'MLP':
-	classificador = MLP_probabilidades(X_treino , y_treino , X_teste , y_teste)
+	elif nome_classificador == 'mlp' or nome_classificador == 'MLP':
+		classificador = MLP_probabilidades(X_treino , y_treino , X_teste , y_teste)
 
-else:
-	print('Nenhum classificador foi selecionado')
-labels = converte_probabilidades_em_labels(classificador)
-gera_resultados(labels , y_teste)
+	else:
+		print('Nenhum classificador foi selecionado')
+	labels = converte_probabilidades_em_labels(classificador)
+	gera_resultados(labels , y_teste)
 
-
-
+elif argc > 4 and argc < 10:
+	metodo = argv[len(argv) - 1]
+	classificadores = prepara_classificadores(argv)
+	print(classificadores)
+		
 
 
 
