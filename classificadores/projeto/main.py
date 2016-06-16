@@ -30,7 +30,7 @@ if argc == 4:
 	labels = None
 	classificador = None
 	if nome_classificador == 'knn' or nome_classificador == 'KNN':
-		classificador = KNN_probabilidades(X_treino , y_treino , X_teste , y_teste , 5)
+		classificador = KNN_probabilidades(X_treino , y_treino , X_teste , y_teste , 11)
 
 	elif nome_classificador == 'lda' or nome_classificador == 'LDA':
 		classificador =  LDA_probabilidades(X_treino , y_treino , X_teste ,  y_teste)
@@ -46,16 +46,40 @@ if argc == 4:
 
 	else:
 		print('Nenhum classificador foi selecionado')
+	
 	labels = converte_probabilidades_em_labels(classificador)
 	gera_resultados(labels , y_teste)
 
 elif argc > 4 and argc < 10:
 	metodo = argv[len(argv) - 1]
 	classificadores = prepara_classificadores(argv)
-	print(classificadores)
-		
+	if metodo == 'voto' or metodo == 'VOTO':
+		votos = []		
+		contador = 0
+		while contador < len(classificadores):
+			if classificadores[contador] == 'knn' or classificadores[contador] == 'KNN':
+				knn_votos = KNN_votos(X_treino , y_treino , X_teste , y_teste , 5)
+				votos.append(knn_votos)
 
+			elif classificadores[contador] == 'lda' or classificadores[contador] == 'LDA':
+				lda_votos = LDA_votos(X_treino , y_treino , X_teste , y_teste)
+				votos.append(lda_votos)
 
+			elif classificadores[contador] == 'svm' or classificadores[contador] == 'SVM':
+				svm_votos = SVM_votos(X_treino , y_treino , X_teste , y_teste)
+				votos.append(svm_votos)
+
+			elif classificadores[contador] == 'tree' or classificadores[contador] == 'TREE':
+				tree_votos = TREE_votos(X_treino , y_treino , X_teste , y_teste)
+				votos.append(tree_votos)
+
+			elif classificadores[contador] == 'mlp' or classificadores[contador] == 'MLP':
+				mlp_votos = MLP_votos(X_treino , y_treino , X_teste , y_teste)
+				votos.append(mlp_votos)
+
+			contador += 1
+		labels = calcula_votos(votos)
+		gera_resultados(labels , y_teste)
 
 
 

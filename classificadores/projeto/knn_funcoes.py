@@ -64,3 +64,39 @@ def KNN_probabilidades(X_treino , y_treino , X_teste ,  y_teste , k):
 
 	predicoes = combina_probabilidades(resultados)
 	return predicoes
+
+
+
+def KNN_votos(X_treino , y_treino , X_teste ,  y_teste , k):
+	''' gera um vetor com os resultados de todos os classificadores KNN combinados '''
+	knn_bart = KNN_builder(X_treino , y_treino , bart , k)
+	knn_homer = KNN_builder(X_treino , y_treino , homer , k)
+	knn_lisa = KNN_builder(X_treino , y_treino , lisa , k)
+	knn_maggie = KNN_builder(X_treino , y_treino , maggie , k)
+	knn_marge = KNN_builder(X_treino , y_treino , marge , k)
+
+	teste_bart = reorganiza_labels(bart , y_teste)
+	teste_homer = reorganiza_labels(homer , y_teste)
+	teste_lisa = reorganiza_labels(lisa , y_teste)
+	teste_maggie = reorganiza_labels(maggie , y_teste)
+	teste_marge = reorganiza_labels(marge , y_teste)
+
+	resultados_bart = knn_bart.predict_proba(X_teste)
+	resultados_homer = knn_homer.predict_proba(X_teste)
+	resultados_lisa = knn_lisa.predict_proba(X_teste)
+	resultados_maggie = knn_maggie.predict_proba(X_teste)
+	resultados_marge = knn_marge.predict_proba(X_teste)
+
+	resultados = [resultados_bart , resultados_homer , resultados_lisa , resultados_maggie , resultados_marge]
+	testes = [teste_bart , teste_homer , teste_lisa , teste_maggie , teste_marge]
+
+	predicoes = combina_probabilidades(resultados)
+	votos = converte_probabilidades_em_labels(predicoes)
+	return votos
+
+
+
+
+
+
+

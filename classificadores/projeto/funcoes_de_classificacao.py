@@ -89,6 +89,7 @@ def converte_probabilidades_em_labels(probabilidades):
 
 
 def prepara_classificadores(argv):
+	''' monta uma lista ordenada com os classificadores informados '''
 	classificadores = []
 	contador = 3
 	while contador < len(argv) - 1:
@@ -96,3 +97,56 @@ def prepara_classificadores(argv):
 		contador += 1
 	classificadores.sort()
 	return classificadores
+
+
+
+def calcula_votos(votos):
+	classes = []
+	contador_votos = 0
+	iteracoes_votos = len(votos[0])
+	while contador_votos < iteracoes_votos:
+		contador = 0
+		iteracoes = len(votos)
+		bart_votos = 0
+		homer_votos = 0
+		lisa_votos = 0
+		maggie_votos = 0
+		marge_votos = 0
+		while contador < iteracoes:
+			if votos[contador][contador_votos] == bart:
+				bart_votos += 1
+
+			elif votos[contador][contador_votos] == homer:
+				homer_votos += 1
+
+			elif votos[contador][contador_votos] == lisa:
+				lisa_votos += 1
+
+			elif votos[contador][contador_votos] == maggie:
+				maggie_votos += 1
+
+			elif votos[contador][contador_votos] == marge:
+				marge_votos += 1			
+
+			contador += 1
+
+
+		if bart_votos > homer_votos and bart_votos > lisa_votos and bart_votos > maggie_votos and bart_votos > marge_votos:
+			classes.append(bart)
+
+		elif homer_votos > bart_votos and homer_votos > lisa_votos and homer_votos > maggie_votos and homer_votos > marge_votos:
+			classes.append(homer)
+
+		elif lisa_votos > bart_votos and lisa_votos > homer_votos and lisa_votos > maggie_votos and lisa_votos > marge_votos:
+			classes.append(lisa)
+
+		elif maggie_votos > bart_votos and maggie_votos > homer_votos and maggie_votos > lisa_votos and maggie_votos > marge_votos:
+			classes.append(maggie)
+
+		elif marge_votos > bart_votos and marge_votos > homer_votos and marge_votos > lisa_votos and marge_votos > lisa_votos:
+			classes.append(marge)
+
+		contador_votos += 1
+	return classes
+
+
