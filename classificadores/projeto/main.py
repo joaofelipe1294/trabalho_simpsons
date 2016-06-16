@@ -23,14 +23,27 @@ X_treino , y_treino = prepara_dados('treino.txt')
 X_teste , y_teste = prepara_dados('validacao.txt')
 
 nome_classificador = argv[3]
+labels = None
 classificador = None
 if nome_classificador == 'knn' or nome_classificador == 'KNN':
-	knn_prob = KNN_probabilidades(X_treino , y_treino , X_teste , y_teste , 5)
-	labels_prob = converte_probabilidades_em_labels(knn_prob)
-	gera_resultados(labels_prob , y_teste)
-else:
-	print('No')
+	classificador = KNN_probabilidades(X_treino , y_treino , X_teste , y_teste , 5)
 
+elif nome_classificador == 'lda' or nome_classificador == 'LDA':
+	classificador =  LDA_probabilidades(X_treino , y_treino , X_teste ,  y_teste)
+
+elif nome_classificador == 'svm' or nome_classificador == 'SVM':
+	classificador = SVM_probabilidades(X_treino , y_treino , X_teste , y_teste)
+
+elif nome_classificador == 'tree' or nome_classificador == 'TREE':
+	classificador = TREE_probabilidades(X_treino , y_treino , X_teste , y_teste)
+
+elif nome_classificador == 'mlp' or nome_classificador == 'MLP':
+	classificador = MLP_probabilidades(X_treino , y_treino , X_teste , y_teste)
+
+else:
+	print('Nenhum classificador foi selecionado')
+labels = converte_probabilidades_em_labels(classificador)
+gera_resultados(labels , y_teste)
 
 
 

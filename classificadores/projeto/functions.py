@@ -201,29 +201,10 @@ def gera_resultados(labels_geradas , labels_corretas):
 	print('+%-10s+%-10s+%-10s+%-10s+%-10s+%-10s+' % ('-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10))
 	print('|%-10s|%-10s|%-10s|%-10s|%-10s|%-10s|' % ('MARGE' ,(' ' * 4 ) + str(lista_marge[0]) , (' ' * 4 ) + str(lista_marge[1]) , (' ' * 4 ) + str(lista_marge[2]) , (' ' * 4 ) + str(lista_marge[3]) , (' ' * 4 ) + str(lista_marge[4])))
 	print('+%-10s+%-10s+%-10s+%-10s+%-10s+%-10s+' % ('-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10))
+	print('Taxa de reconhecimento : ' + str(classificados_corretos / len(labels_corretas)))
 	#print(lista_bart)
 	#print(lista_homer)
 	#print(lista_lisa)
 	#print(lista_maggie)
 	#print(lista_marge)
-	print('Taxa de reconhecimento : ' + str(classificados_corretos / len(labels_corretas)))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
