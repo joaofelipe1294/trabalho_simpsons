@@ -86,7 +86,42 @@ def soma(probabilidades):
 
 
 
+def media(probabilidades):
+	''' aplica fusao de classificadores por meio da media '''
+	classes = []
+	contador_prob = 0
+	iteracoes_prob = len(probabilidades[0])
+	while contador_prob < iteracoes_prob:
+		medias = [0 , 0 , 0 , 0, 0]
+		contador_class = 0
+		iteracoes_class = len(probabilidades)
 
+		while contador_class < iteracoes_class:
+			contador = 0
+			iteracoes = len(probabilidades[0][0])
+			while contador < iteracoes:
+				medias[contador] += probabilidades[contador_class][contador_prob][contador]
+				contador += 1
+			contador_class += 1
+			
+		contador = 0
+		iteracoes = len(medias)
+		while contador < iteracoes:
+			medias[contador] /= len(medias)
+			contador += 1
+
+		index_maior = 0
+		maior = medias[0]
+		contador = 0
+
+		while contador < len(medias):
+			if medias[contador] > maior:
+				index_maior = contador
+				maior = medias[contador]
+			contador += 1
+		classes.append(index_maior + 1)
+		contador_prob += 1
+	return classes
 
 
 

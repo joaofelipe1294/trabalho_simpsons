@@ -108,77 +108,35 @@ elif argc > 4 and argc < 10:
 
 			contador += 1
 		labels = soma(probabilidades)
-		#print(labels)
 		gera_resultados(labels , y_teste)		
 
+	elif metodo == 'media' or metodo == 'MEDIA':
+		probabilidades = []		
+		contador = 0
+		while contador < len(classificadores):
+			if classificadores[contador] == 'knn' or classificadores[contador] == 'KNN':
+				knn = KNN_probabilidades(X_treino , y_treino , X_teste , y_teste , 5)
+				probabilidades.append(knn)
 
+			elif classificadores[contador] == 'lda' or classificadores[contador] == 'LDA':
+				lda = LDA_probabilidades(X_treino , y_treino , X_teste , y_teste)
+				probabilidades.append(lda)
 
+			elif classificadores[contador] == 'svm' or classificadores[contador] == 'SVM':
+				svm = SVM_probabilidades(X_treino , y_treino , X_teste , y_teste)
+				probabilidades.append(svm)
 
+			elif classificadores[contador] == 'tree' or classificadores[contador] == 'TREE':
+				tree = TREE_probabilidades(X_treino , y_treino , X_teste , y_teste)
+				probabilidades.append(tree)
 
+			elif classificadores[contador] == 'mlp' or classificadores[contador] == 'MLP':
+				mlp = MLP_probabilidades(X_treino , y_treino , X_teste , y_teste)
+				probabilidades.append(mlp)
 
+			contador += 1
+		labels = media(probabilidades)
+		gera_resultados(labels , y_teste)
 
-
-
-
-
-
-
-
-
-'''
-
-""" LDA """
-print("============ LDA  ============")
-lda_predicoes =  LDA_resultados(X_treino , y_treino , X_teste ,  y_teste)
-exibe_resultados(lda_predicoes , y_teste)
-
-print("========== LDA PROB ==========")
-lda_probabilidades =  LDA_probabilidades(X_treino , y_treino , X_teste ,  y_teste)
-labels_prob = converte_probabilidades_em_labels(lda_probabilidades)
-exibe_resultados(labels_prob , y_teste)
-
-
-""" SVM """
-print("============ SVM ============")
-svm_predicoes = SVM_resultados(X_treino , y_treino , X_teste , y_teste)
-exibe_resultados(svm_predicoes , y_teste)
-
-print("========== SVM PROB ==========")
-svm_prob = SVM_probabilidades(X_treino , y_treino , X_teste , y_teste)
-labels_prob = converte_probabilidades_em_labels(svm_prob)
-exibe_resultados(labels_prob , y_teste)
-
-
-""" KNN """
-print("============ KNN ============")
-knn_predicoes = KNN_resultados(X_treino , y_treino , X_teste , y_teste , 5)
-exibe_resultados(knn_predicoes , y_teste)
-
-print("========== KNN PROB ==========")
-knn_prob = KNN_probabilidades(X_treino , y_treino , X_teste , y_teste , 5)
-labels_prob = converte_probabilidades_em_labels(knn_prob)
-exibe_resultados(labels_prob , y_teste)
-
-
-""" TREE """
-print("============ TREE ============")
-tree_predicoes = TREE_resultados(X_treino , y_treino , X_teste , y_teste)
-exibe_resultados(tree_predicoes , y_teste)
-
-print("========== TREE PROB ==========")
-tree_prob = TREE_probabilidades(X_treino , y_treino , X_teste , y_teste)
-labels_prob = converte_probabilidades_em_labels(tree_prob)
-exibe_resultados(labels_prob , y_teste)
-
-
-
-""" MLP """
-print("============ MLP ============")
-mlp_predicoes = MLP_resultados(X_treino , y_treino , X_teste , y_teste)
-exibe_resultados(mlp_predicoes , y_teste)
-
-print("========== MLP PROB ==========")
-mlp_prob = MLP_probabilidades(X_treino , y_treino , X_teste , y_teste)
-labels_prob = converte_probabilidades_em_labels(mlp_prob)
-exibe_resultados(labels_prob , y_teste)
-'''
+else:
+	print('Numero errado de argumentos !')
