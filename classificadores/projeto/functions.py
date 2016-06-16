@@ -79,3 +79,151 @@ def exibe_resultados(predicoes , y_teste):
 	print('Acertos : ' + str(acertos))
 	print('Erros : ' + str(erros))
 	print('Rejeicoes : ' + str(rejeicoes))
+
+
+
+def gera_resultados(labels_geradas , labels_corretas):
+	lista_bart = [0 , 0 , 0 , 0 , 0]
+	lista_homer = [0 , 0 , 0 , 0 , 0]
+	lista_lisa = [0 , 0 , 0 , 0 , 0]
+	lista_maggie = [0 , 0 , 0 , 0 , 0]
+	lista_marge = [0 , 0 , 0 , 0 , 0]
+	bart_posicao = 0
+	homer_posicao = 1
+	lisa_posicao = 2
+	maggie_posicao = 3
+	marge_posicao = 4
+	contador = 0
+	classificados_corretos = 0
+	iteracoes = len(labels_geradas)
+	while contador < iteracoes:
+		if labels_corretas[contador] == bart:
+
+			if labels_geradas[contador] == bart:
+				lista_bart[bart_posicao] += 1
+				classificados_corretos += 1
+
+			elif labels_geradas[contador] == homer:
+				lista_bart[homer_posicao] += 1
+
+			elif labels_geradas[contador] == lisa:
+				lista_bart[lisa_posicao] += 1
+
+			elif labels_geradas[contador] == maggie:
+				lista_bart[maggie_posicao] += 1
+
+			elif labels_geradas[contador] == marge:
+				lista_bart[marge_posicao] += 1
+
+		elif labels_corretas[contador] == homer:
+
+			if labels_geradas[contador] == bart:
+				lista_homer[bart_posicao] += 1
+
+			elif labels_geradas[contador] == homer:
+				lista_homer[homer_posicao] += 1
+				classificados_corretos += 1
+
+			elif labels_geradas[contador] == lisa:
+				lista_homer[lisa_posicao] += 1
+
+			elif labels_geradas[contador] == maggie:
+				lista_homer[maggie_posicao] += 1
+
+			elif labels_geradas[contador] == marge:
+				lista_homer[marge_posicao] += 1
+
+		elif labels_corretas[contador] == lisa:
+
+			if labels_geradas[contador] == bart:
+					lista_lisa[bart_posicao] += 1
+
+			elif labels_geradas[contador] == homer:
+				lista_lisa[homer_posicao] += 1
+
+			elif labels_geradas[contador] == lisa:
+				lista_lisa[lisa_posicao] += 1
+				classificados_corretos += 1
+
+			elif labels_geradas[contador] == maggie:
+				lista_lisa[maggie_posicao] += 1
+
+			elif labels_geradas[contador] == marge:
+				lista_lisa[marge_posicao] += 1
+
+		elif labels_corretas[contador] == maggie:
+
+			if labels_geradas[contador] == bart:
+				lista_maggie[bart_posicao] += 1
+
+			elif labels_geradas[contador] == homer:
+				lista_maggie[homer_posicao] += 1
+
+			elif labels_geradas[contador] == lisa:
+				lista_maggie[lisa_posicao] += 1
+
+			elif labels_geradas[contador] == maggie:
+				lista_maggie[maggie_posicao] += 1
+				classificados_corretos += 1
+
+			elif labels_geradas[contador] == marge:
+				lista_maggie[marge_posicao] += 1
+
+		elif labels_corretas[contador] == marge:
+
+			if labels_geradas[contador] == bart:
+				lista_marge[bart_posicao] += 1
+
+			elif labels_geradas[contador] == homer:
+				lista_marge[homer_posicao] += 1
+
+			elif labels_geradas[contador] == lisa:
+				lista_marge[lisa_posicao] += 1
+
+			elif labels_geradas[contador] == maggie:
+				lista_marge[maggie_posicao] += 1
+
+			elif labels_geradas[contador] == marge:
+				lista_marge[marge_posicao] += 1
+				classificados_corretos += 1
+
+		contador += 1
+	print('+%-10s+%-10s+%-10s+%-10s+%-10s+%-10s+' % ('-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10))
+	print('|%-10s|%-10s|%-10s|%-10s|%-10s|%-10s|' % (' ' * 10 , 'BART' , 'HOMER' , 'LISA' , 'MAGGIE' , 'MARGE'))
+	print('+%-10s+%-10s+%-10s+%-10s+%-10s+%-10s+' % ('-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10))
+	print('|%-10s|%-10s|%-10s|%-10s|%-10s|%-10s|' % ('BART' ,(' ' * 4 ) + str(lista_bart[0]) , (' ' * 4 ) + str(lista_bart[1]) , (' ' * 4 ) + str(lista_bart[2]) , (' ' * 4 ) + str(lista_bart[3]) , (' ' * 4 ) + str(lista_bart[4])))
+	print('+%-10s+%-10s+%-10s+%-10s+%-10s+%-10s+' % ('-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10))
+	print('|%-10s|%-10s|%-10s|%-10s|%-10s|%-10s|' % ('HOMER' ,(' ' * 4 ) + str(lista_homer[0]) , (' ' * 4 ) + str(lista_homer[1]) , (' ' * 4 ) + str(lista_homer[2]) , (' ' * 4 ) + str(lista_homer[3]) , (' ' * 4 ) + str(lista_homer[4])))
+	print('+%-10s+%-10s+%-10s+%-10s+%-10s+%-10s+' % ('-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10))
+	print('|%-10s|%-10s|%-10s|%-10s|%-10s|%-10s|' % ('LISA' ,(' ' * 4 ) + str(lista_lisa[0]) , (' ' * 4 ) + str(lista_lisa[1]) , (' ' * 4 ) + str(lista_lisa[2]) , (' ' * 4 ) + str(lista_lisa[3]) , (' ' * 4 ) + str(lista_lisa[4])))
+	print('+%-10s+%-10s+%-10s+%-10s+%-10s+%-10s+' % ('-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10))
+	print('|%-10s|%-10s|%-10s|%-10s|%-10s|%-10s|' % ('MAGGIE' ,(' ' * 4 ) + str(lista_maggie[0]) , (' ' * 4 ) + str(lista_maggie[1]) , (' ' * 4 ) + str(lista_maggie[2]) , (' ' * 4 ) + str(lista_maggie[3]) , (' ' * 4 ) + str(lista_maggie[4])))
+	print('+%-10s+%-10s+%-10s+%-10s+%-10s+%-10s+' % ('-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10))
+	print('|%-10s|%-10s|%-10s|%-10s|%-10s|%-10s|' % ('MARGE' ,(' ' * 4 ) + str(lista_marge[0]) , (' ' * 4 ) + str(lista_marge[1]) , (' ' * 4 ) + str(lista_marge[2]) , (' ' * 4 ) + str(lista_marge[3]) , (' ' * 4 ) + str(lista_marge[4])))
+	print('+%-10s+%-10s+%-10s+%-10s+%-10s+%-10s+' % ('-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10 , '-' * 10))
+	#print(lista_bart)
+	#print(lista_homer)
+	#print(lista_lisa)
+	#print(lista_maggie)
+	#print(lista_marge)
+	print('Taxa de reconhecimento : ' + str(classificados_corretos / len(labels_corretas)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

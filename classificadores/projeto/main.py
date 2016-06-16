@@ -13,7 +13,7 @@ homer = 2
 lisa = 3
 maggie = 4
 marge = 5   
-
+""""""""""""""""""
 
 
 """ prepara dados """
@@ -22,7 +22,36 @@ dir_validacao = argv[2]
 X_treino , y_treino = prepara_dados('treino.txt')
 X_teste , y_teste = prepara_dados('validacao.txt')
 
+nome_classificador = argv[3]
+classificador = None
+if nome_classificador == 'knn' or nome_classificador == 'KNN':
+	knn_prob = KNN_probabilidades(X_treino , y_treino , X_teste , y_teste , 5)
+	labels_prob = converte_probabilidades_em_labels(knn_prob)
+	gera_resultados(labels_prob , y_teste)
+else:
+	print('No')
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
 
 """ LDA """
 print("============ LDA  ============")
@@ -78,3 +107,4 @@ print("========== MLP PROB ==========")
 mlp_prob = MLP_probabilidades(X_treino , y_treino , X_teste , y_teste)
 labels_prob = converte_probabilidades_em_labels(mlp_prob)
 exibe_resultados(labels_prob , y_teste)
+'''
