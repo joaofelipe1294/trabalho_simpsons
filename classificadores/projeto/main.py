@@ -6,6 +6,7 @@ from svm_funcoes import *
 from knn_funcoes import *
 from tree_funcoes import *
 from mlp_funcoes import *
+from fusao_classificadores import *
 
 """ CONSTANTES """
 bart = 1
@@ -80,6 +81,35 @@ elif argc > 4 and argc < 10:
 			contador += 1
 		labels = calcula_votos(votos)
 		gera_resultados(labels , y_teste)
+
+	elif metodo == 'soma' or metodo == 'SOMA':
+		probabilidades = []		
+		contador = 0
+		while contador < len(classificadores):
+			if classificadores[contador] == 'knn' or classificadores[contador] == 'KNN':
+				knn = KNN_probabilidades(X_treino , y_treino , X_teste , y_teste , 5)
+				probabilidades.append(knn)
+
+			elif classificadores[contador] == 'lda' or classificadores[contador] == 'LDA':
+				lda = LDA_probabilidades(X_treino , y_treino , X_teste , y_teste)
+				probabilidades.append(lda)
+
+			elif classificadores[contador] == 'svm' or classificadores[contador] == 'SVM':
+				svm = SVM_probabilidades(X_treino , y_treino , X_teste , y_teste)
+				probabilidades.append(svm)
+
+			elif classificadores[contador] == 'tree' or classificadores[contador] == 'TREE':
+				tree = TREE_probabilidades(X_treino , y_treino , X_teste , y_teste)
+				probabilidades.append(tree)
+
+			elif classificadores[contador] == 'mlp' or classificadores[contador] == 'MLP':
+				mlp = MLP_probabilidades(X_treino , y_treino , X_teste , y_teste)
+				probabilidades.append(mlp)
+
+			contador += 1
+		labels = soma(probabilidades)
+		#print(labels)
+		gera_resultados(labels , y_teste)		
 
 
 
