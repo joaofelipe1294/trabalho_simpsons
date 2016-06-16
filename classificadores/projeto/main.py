@@ -5,6 +5,7 @@ from lda_funcoes import *
 from svm_funcoes import *
 from knn_funcoes import *
 from tree_funcoes import *
+from mlp_funcoes import *
 
 """ CONSTANTES """
 bart = 1
@@ -67,9 +68,13 @@ labels_prob = converte_probabilidades_em_labels(tree_prob)
 exibe_resultados(labels_prob , y_teste)
 
 
-'''
+
 """ MLP """
-print("========== MLP ==========")
+print("============ MLP ============")
 mlp_predicoes = MLP_resultados(X_treino , y_treino , X_teste , y_teste)
 exibe_resultados(mlp_predicoes , y_teste)
-'''
+
+print("========== MLP PROB ==========")
+mlp_prob = MLP_probabilidades(X_treino , y_treino , X_teste , y_teste)
+labels_prob = converte_probabilidades_em_labels(mlp_prob)
+exibe_resultados(labels_prob , y_teste)
